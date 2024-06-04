@@ -1,0 +1,11 @@
+docker network create mynet
+
+docker volume create myvol
+
+docker run -d --network mynet --name appdb \
+   --volume type=volume,src=myvol,dst=/var/lib/mysql \
+   stackupiss/northwind-db:v1
+
+docker run -d -p 8080:3000 --network mynet --name app \
+   -e DB_HOST=appdb -e DB_USER=root -e DB_PASSWORD=changeit \
+   stackupiss/northwind-app:v1

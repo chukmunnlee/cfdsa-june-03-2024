@@ -1,0 +1,5 @@
+commonLabels:
+  dept: eng
+
+controller:
+  image: gcr.io/fred/nginx
